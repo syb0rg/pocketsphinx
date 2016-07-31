@@ -32,7 +32,6 @@ else ()
         SOURCE_DIR          ${CMAKE_BINARY_DIR}/lib/sphinxbase
         UPDATE_COMMAND      ""
         INSTALL_COMMAND     ""
-        INSTALL_COMMAND     ""
         BUILD_IN_SOURCE     ON
         LOG_DOWNLOAD        ON
         LOG_UPDATE          ON
@@ -66,6 +65,8 @@ ADD_LIBRARY(${PROJECT_NAME} STATIC
 	$<TARGET_OBJECTS:libpocketsphinx> 
 	)
 	
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS})
+
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS})
 
 if (DEPENDENCIES)
