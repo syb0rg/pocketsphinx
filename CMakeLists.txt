@@ -51,6 +51,10 @@ else ()
 endif ()
 SET(LIBS ${LIBS} ${SPHINXBASE_LIBRARIES})
 
+if (WIN32)
+	set(LIBS ${LIBS} winmm)
+endif ()
+
 #
 # Final project settings
 #
