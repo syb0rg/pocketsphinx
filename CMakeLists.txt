@@ -61,6 +61,8 @@ ADD_SUBDIRECTORY(src)
 ADD_LIBRARY(${PROJECT_NAME} STATIC
 	$<TARGET_OBJECTS:libpocketsphinx> 
 	)
+	
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS})
 
 if (DEPENDENCIES)
 	MESSAGE (STATUS "Any missing dependencies will be downloaded upon running \"make\"")
