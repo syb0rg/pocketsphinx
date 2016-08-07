@@ -44,7 +44,7 @@ else ()
     ExternalProject_Get_Property(sphinxbase BINARY_DIR)
     SET(SPHINXBASE_SOURCE_DIR ${SOURCE_DIR})
     SET(SPHINXBASE_BINARY_DIR ${BINARY_DIR})
-    SET(SPHINXBASE_LIBRARIES ${SPHINXBASE_SOURCE_DIR}/libsphinxbase.a)
+    SET(SPHINXBASE_LIBRARIES ${SPHINXBASE_SOURCE_DIR}/libsphinxbase_static.a)
     SET(DEPENDENCIES ${DEPENDENCIES} sphinxbase)
     INCLUDE_DIRECTORIES(${SPHINXBASE_SOURCE_DIR}/include)
 endif ()
@@ -61,11 +61,16 @@ endif ()
 INCLUDE_DIRECTORIES(include)
 ADD_SUBDIRECTORY(src)
 
-ADD_LIBRARY(${PROJECT_NAME} STATIC
+ADD_LIBRARY(${PROJECT_NAME} SHARED
+    $<TARGET_OBJECTS:libpocketsphinx>
+)
+
+ADD_LIBRARY(${PROJECT_NAME}_static STATIC
 	$<TARGET_OBJECTS:libpocketsphinx> 
-	)
+)
 
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${LIBS})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME}_static ${LIBS})
 
 if (DEPENDENCIES)
 	MESSAGE (STATUS "Any missing dependencies will be downloaded upon running \"make\"")
