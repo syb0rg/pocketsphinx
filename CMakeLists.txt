@@ -57,6 +57,8 @@ SET(LIBS ${LIBS} ${SPHINXBASE_LIBRARIES})
 
 if (WIN32)
 	set(LIBS ${LIBS} winmm)
+elseif (UNIX)
+    set(LIBS ${LIBS} m pthread)
 endif ()
 
 #
