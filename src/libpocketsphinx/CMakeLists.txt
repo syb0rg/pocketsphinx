@@ -30,6 +30,7 @@ SET(SOURCES	acmod.c
     )
 
 add_library(libpocketsphinx OBJECT ${SOURCES})
+set_property(TARGET libpocketsphinx PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 
 if (DEPENDENCIES)
 	ADD_DEPENDENCIES(libpocketsphinx ${DEPENDENCIES})
